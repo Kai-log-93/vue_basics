@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app"> </div>
+        <template id="my-app">
+            <!-- mutache usage-->
+            <h2>mutache usage: {{msg}} - {{isShow}}</h2>
+            <!-- mutache calculate-->
+            <h2>mutache calculate: {{counter * 10}}</h2>
+            <h2>mutache string function: {{msg.split(" ").join("-")}}</h2>
+            <!-- mutache use methods-->
+            <h2>mutache use methods: {{getReverseMsg()}}</h2>
+            <!-- mutache with tri...-->
+            <h2>mutache with tri...: {{isShow ? "三元运算符": ""}}</h2>
+            <button @Click="toggle"> isShow </button>
+        </template>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script>
+            const App = {
+                template: '#my-app',
+                data() {
+                    return {
+                        msg: "Hello World!",
+                        counter: 100,
+                        isShow: true
+                    }
+                },
+                methods: {
+                    getReverseMsg() {
+                        return this.msg.split(" ").reverse().join(" ");
+                    },
+                    toggle() {
+                        this.isShow = !this.isShow;
+                    }                    
+                },
+            }
+            Vue.createApp(App).mount('#app');
+        </script>
+    </body>
+</html>
