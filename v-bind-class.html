@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app"></div>
+        <template id="my-app">
+            <!--bind string-->
+            <div :class="className">className</div>
+            <!--bind object {active:boolean}-->
+            <div :class="{active:isActive}">class bind object</div>
+            <!--bind object multiple key-->
+            <div :class="{active:isActive,tile:true}">class bind object multi</div>
+            <!--defualt class and dynamic class-->
+            <div class="abc cba" :class="{active:isActive,tile:true}">defualt class and dynamic class</div>
+            <!--put object to class-->
+            <div class="abc cba" :class="classObj">put object to class</div>
+            <!--put returned object into methods--> 
+            <div class="abc cba" :class="getClassObj()">put returned object into methods</div>
+            <button @click="toggle">toggle isActive</button>
+        </template>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script>
+            const App = {
+                template: '#my-app',
+                data() {
+                    return {
+                        className: "coder Why?",
+                        isActive: true,
+                        classObj: {
+                            active: true,
+                            title:true
+                        }
+                    }
+                },
+                methods: {
+                    toggle() {
+                        this.isActive = !this.isActive;
+                    },
+                    getClassObj() {
+                        return {
+                            active: false,
+                            title:true
+                        }
+                    }
+                },
+            }
+            Vue.createApp(App).mount('#app');
+        </script>
+    </body>
+</html>

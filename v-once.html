@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <!--这貌似是固定写法-->
+        <div id="app"></div>
+
+        <template id="my-app">
+            <!--会重新渲染一次-->
+            <h2>会重新渲染一次: {{counter}}</h2>
+            <!--只渲染一次-->
+            <h2 v-once>只渲染一次: {{counter}}</h2>
+            <div v-once>
+                <h3>只渲染一次: {{counter}}</h3>
+                <h3>只渲染一次: {{msg}}</h3>
+            </div>
+            <!--一个 ++ 的 button-->
+            <button @click="increment"> +1 </button>
+        </template>
+
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script>
+            const App = {
+                template: '#my-app',
+                data() {
+                    return {
+                        counter: 100,
+                        msg: "Hello World!"
+                    }
+                },
+                methods: {
+                    increment() {
+                        this.counter++;
+                    }
+                },
+            }
+            Vue.createApp(App).mount('#app');
+        </script>
+    </body>
+</html>
